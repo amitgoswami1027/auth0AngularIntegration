@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,14 +7,10 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profileJson: string = null;
 
   constructor(public auth: AuthService) { }
 
   ngOnInit() {
-    this.auth.userProfile$.subscribe(
-      profile => this.profileJson = JSON.stringify(profile, null, 2)
-    );
   }
 
 }
