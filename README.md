@@ -8,6 +8,7 @@
 
 #### STEP-01 : Install Auth0.js
 *  npm install auth0-js@latest --save
+
 #### STEP-02 : Dynamic Environment Configuration
 Let's create a file to store information about our app's environment. We're currently developing on localhost:4200, but the app will be deployed on the Node server eventually, and in production, it will run on a reverse proxy. We'll need to make sure our development environment doesn't break our production environment and vice versa. Create a folder: src/app/core, then add a file there called env.config.ts:
 ```
@@ -65,13 +66,15 @@ export const AUTH_CONFIG: AuthConfig = {
   that the user is now authenticated.
 * Finally, we'll implement the renewToken() method, which uses the Auth0 checkSession() method to request a fresh access token from 
   Auth0 if the user's authentication session is still active. If there is no session active, we won't take any action
+
 #### STEP-05 : Provide AuthService in App Module
 In order to use the AuthService methods and properties anywhere in our app, we need to add the service to the providers array in our app.module.ts:
 ```
 import { AuthService } from './auth/auth.service';
 ```
-#### STEP-05 : Create a Callback Component
+#### STEP-06 : Create a Callback Component
 Next we'll create a Callback component. This is where the app is redirected after authentication. This component handles the authentication information and then shows a loading message until hash parsing is completed and the Angular app redirects back to the home page. The authentication service's handleAuth() method must be called in the callback.component.ts constructor so it will run on initialization of our app:
+
 ```
 // src/app/pages/callback/callback.component.ts
 import { AuthService } from './auth/auth.service';
@@ -82,13 +85,13 @@ import { AuthService } from './auth/auth.service';
   }
 ...
 All we need to do in this component's template is change the text in callback.component.html to Loading..., like so:
-```
+
 <!-- src/app/pages/callback/callback.component.html -->
 <div>
   Loading...
 </div>
 * NOTE : ADD Component to routing module: For now, let's add the component to our routing module, app-routing.module.ts:
-```
+
 // src/app/app-routing.module.ts
 ...
 import { CallbackComponent } from './pages/callback/callback.component';
@@ -115,9 +118,9 @@ export class HeaderComponent implements OnInit {
     public auth: AuthService) { }
   ...
 }
-```
+
 Now let's add login, logout, and a user greeting to the header.component.html template:
-```
+
 <!-- src/app/header/header.component.html -->
 <header id="header" class="header">
   <div class="header-page bg-primary">
@@ -135,13 +138,11 @@ Now let's add login, logout, and a user greeting to the header.component.html te
     </div>
   ...
 ```
-
+```
 
 * https://dragonprogrammer.com/securing-angular-auth0/
-```
+
 ------------------------------------------------------------------------------------------------------------------------------------
-
-
 # Auth0 Angular Samples
 
 [![CircleCI](https://circleci.com/gh/auth0-samples/auth0-angular-samples.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-angular-samples)
