@@ -138,7 +138,6 @@ Now let's add login, logout, and a user greeting to the header.component.html te
     </div>
   ...
 ```
-```
 
 * https://dragonprogrammer.com/securing-angular-auth0/
 
